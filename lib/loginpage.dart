@@ -15,6 +15,7 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bool showPassState = ref.watch(showPassProvider);
+    debugPrint("main");
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -55,6 +56,12 @@ class LoginPage extends ConsumerWidget {
                       SizedBox(
                         width: 250,
                         child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
                           controller: _usernameController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -92,6 +99,12 @@ class LoginPage extends ConsumerWidget {
                       SizedBox(
                         width: 240,
                         child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
                           controller: _passwordController,
                           obscureText: showPassState,
                           decoration: const InputDecoration(
@@ -102,6 +115,7 @@ class LoginPage extends ConsumerWidget {
                       ),
                       IconButton(
                         onPressed: () {
+                          debugPrint("Hide");
                           ref
                               .read(showPassProvider.notifier)
                               .update((state) => !state);
@@ -142,10 +156,12 @@ class LoginPage extends ConsumerWidget {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF475269)),
                             onPressed: () {
+                              debugPrint("Login");
                               ref.read(authNotifierProvider.notifier).validate(
                                   username: _usernameController.text,
                                   password: _passwordController.text,
                                   context: context);
+                              if (_formKey.currentState!.validate()) {}
                             },
                             child: const Text(
                               'Sign In',
@@ -165,7 +181,9 @@ class LoginPage extends ConsumerWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        debugPrint("Sign UP");
+                      },
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(

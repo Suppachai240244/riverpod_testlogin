@@ -51,6 +51,4 @@ class AuthNotifier extends StateNotifier<bool> {
       );
     }
   }
-
-  void ToggleButtons() {}
 }
