@@ -20,7 +20,7 @@ class AuthNotifier extends StateNotifier<bool> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => HomePage(),
         ),
       );
       state = false;
