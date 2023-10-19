@@ -41,14 +41,14 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      // routes: {
-      //   "/": (context) => LoginPage(),
-      //   "homepage": (context) => const HomePage(),
-      // },
       routes: {
-        "/": (context) => HomePage(),
-        // "homepage": (context) => const HomePage(),
+        "/": (context) => LoginPage(),
+        "homepage": (context) => HomePage(),
       },
+      // routes: {
+      //   "/": (context) => HomePage(),
+      //    "homepage": (context) => const HomePage(),
+      // },
     );
   }
 }

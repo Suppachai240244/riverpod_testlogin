@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:login_codium/notifiers/auth_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 final showPassProvider = StateProvider<bool>((ref) => true);
 
@@ -89,15 +90,17 @@ class LoginPage extends ConsumerWidget {
                     ],
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Icon(
                         Icons.lock,
                         size: 27,
                         color: Color(0xFF475269),
                       ),
-                      const SizedBox(width: 15),
                       SizedBox(
-                        width: 240,
+                        width: ResponsiveBreakpoints.of(context).isMobile
+                            ? 200
+                            : 630,
                         child: TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
